@@ -26,18 +26,18 @@ li.custom-dropdown a .caret {
 }
 
 .custom-nav {
-	white-space: nowrap;
+	/*white-space: nowrap;*/
 	padding-left: 5px !important;
 	position: relative;
 }
 
 #home-slider, .custom-nav a, .custom-dropdown {
-	float: none;
+	/*float: none;*/
 }
 
 .custom-dropdown, .custom-dropdown:before, custom-dropdown:after {
 	/*display: inline-table !important;*/
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 @media screen and (min-width: 780px) {
