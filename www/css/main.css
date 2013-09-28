@@ -1,0 +1,45 @@
+.container {
+	padding: 0 0;
+	position: relative;
+	z-index: 2;
+	background: #fff;
+}
+li.custom-menu a {
+	color: #5e5e5e;
+	font-size: 14px;
+}
+
+li.custom-menu .dropdown-menu {
+	margin-top: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+li.custom-menu a:hover, li.custom-menu a:focus {
+	text-decoration: none;
+}
+li.custom-menu a .caret {
+	border-top-color: #777777;
+	border-bottom-color: #777777;
+}
+
+.custom-nav {
+	padding-left: 5px !important;
+	position: relative;
+}
+
+@media screen and (min-width: 320px) {
+	.custom-slider {
+		width: 80%;
+		max-width: 350px;
+		position: fixed;
+		display: block;
+		z-index: 1;
+		overflow: hidden;
+		/*background: #f8f8f8;*/
+	}
+
+	.sliding {
+		/*-webkit-transition: -webkit-transform 450ms ease;
+		-webkit-transform: translate(260px, 0);*/
+	}
+}
