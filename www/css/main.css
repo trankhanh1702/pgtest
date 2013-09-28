@@ -36,7 +36,8 @@ li.custom-dropdown a .caret {
 }
 
 .custom-dropdown, .custom-dropdown:before, custom-dropdown:after {
-	display: inline-table !important;
+	/*display: inline-table !important;*/
+	display: inline-block;
 }
 
 @media screen and (min-width: 780px) {
