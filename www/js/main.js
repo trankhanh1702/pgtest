@@ -6,11 +6,11 @@ var menuHandler = function() {
 			addClass("custom-slider").find('ul');
 		$(this).parent().parent().parent().animate({
 			left: "+=" + sliderTarget.css("width")
-		});
+		}, 150, "linear");
 	} else {
 		$(this).parent().parent().parent().animate({
 			left: "-=" + sliderTarget.css("width")
-		}, function() {
+		}, 150, "linear", function() {
 			sliderTarget.data("clickState", 0).
 				addClass('collapse').
 				removeClass("custom-slider");
@@ -20,39 +20,25 @@ var menuHandler = function() {
 
 $("#home-slider").click(menuHandler)
 
-// Callback function references the event target and adds the 'swipeleft' class to it
-function swiperightHandler(event){
 
-	event.preventDefault();
-	var sliderTarget = $("#left-menu");
 
-	if(sliderTarget.data("clickState") != 1) {
+var wrapper = document.getElementById("wrapper");
 
-		var sliderTarget = $("#left-menu");
-		sliderTarget.data("clickState", 1).
-			removeClass('collapse').
-			addClass("custom-slider").find('ul');
 
-		$(this).animate({
-			left: "+=" + sliderTarget.css("width")
-		});
-	}
-}
+wrapper.addEventListener('touchend', function() {
+        document.getElementById("test").innerHTML = "<p>Ended</p>";
+	//ctx.clearRect(0, 0, w, h);
+});
 
-function swipeleftHandler(event){
-	event.preventDefault();
-	var sliderTarget = $("#left-menu");
-	if(sliderTarget.data("clickState") == 1) {
-		var sliderTarget = $("#left-menu");
-		$(this).animate({
-				left: "-=" + sliderTarget.css("width")
-			}, function() {
-				sliderTarget.data("clickState", 0).
-					addClass('collapse').
-					removeClass("custom-slider");
-		});
-	}
-}
+wrapper.addEventListener('touchmove', function(event) {
+  event.preventDefault();
+   document.getElementById("test").innerHTML = "<p>Moving</p>";
+});
 
-// Bind the swipeleftHandler callback function to the swipe event on div.box
-$( ".container" ).on("swipeleft", swipeleftHandler).on("swiperight", swiperightHandler);
+wrapper.addEventListener('touchstart', function(event) {
+
+document.getElementById("test").innerHTML = "<p>Starting</p>";
+
+});
+
+
