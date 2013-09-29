@@ -18,16 +18,16 @@ $("#home-slider").click(function() {
 		});
 	};
 
-	$(function(){
-	  // Bind the swipeleftHandler callback function to the swipe event on div.box
-	  $( ".container" ).on( "swipeleft", swipeleftHandler );
-	 
-	  // Callback function references the event target and adds the 'swipeleft' class to it
-	  function swipeleftHandler( event ){
-	  	// alert("")
-	  	$(".container").css("color", "red")
-	    // $( event.target ).addClass( "swipeleft" );
-	  }
-	});
-
 })
+
+$(function(){
+  // Bind the swipeleftHandler callback function to the swipe event on div.box
+  $( ".container" ).on( "swipeleft", swipeleftHandler );
+ 
+  // Callback function references the event target and adds the 'swipeleft' class to it
+  function swipeleftHandler( event ){
+  	// alert("")
+  	$(".container").css("color", "red")
+    // $( event.target ).addClass( "swipeleft" );
+  }
+});
