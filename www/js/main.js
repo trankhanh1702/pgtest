@@ -24,8 +24,10 @@ $("#home-slider").click(function() {
 	 
 	  // Callback function references the event target and adds the 'swipeleft' class to it
 	  function swipeleftHandler( event ){
-	  	alert("")
+	  	// alert("")
+	  	$(".container").css("color", "red")
 	    // $( event.target ).addClass( "swipeleft" );
 	  }
 	});
+
 })
