@@ -16,5 +16,16 @@ $("#home-slider").click(function() {
 				addClass('collapse').
 				removeClass("custom-slider");
 		});
-	}
+	};
+
+	$(function(){
+	  // Bind the swipeleftHandler callback function to the swipe event on div.box
+	  $( ".container" ).on( "swipeleft", swipeleftHandler );
+	 
+	  // Callback function references the event target and adds the 'swipeleft' class to it
+	  function swipeleftHandler( event ){
+	  	alert("")
+	    // $( event.target ).addClass( "swipeleft" );
+	  }
+	});
 })
