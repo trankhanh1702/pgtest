@@ -7,7 +7,8 @@ var wrapper = document.getElementById("wrapper"),
 	wrapperY;
 	content = document.getElementById("content");
 var menuHandler = function() {
-	var sliderTarget = $("#left-menu");
+	// var sliderTarget = $("#left-menu");
+	sliderTarget = document.getElementById("#")
 	if(canSwipeLeft) {
 		sliderTarget.removeClass('collapse').
 			addClass("custom-slider").find('ul');
@@ -30,7 +31,7 @@ var menuHandler = function() {
 	};
 }
 
-$("#home-slider").click(menuHandler)
+document.getElementById("home-slider").addEventListener('touchstart', menuHandler);
 
 
 content.addEventListener('touchend', function(event) {
