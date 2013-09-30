@@ -1,19 +1,31 @@
+var wrapper = document.getElementById("wrapper"),
+	$wrapper = $("wrapper"),
+	coorXStart = 0,
+	moveStatus = 0,
+	coorX = 0,
+	canSwipeLeft = true,
+	wrapperY;
+	content = document.getElementById("content");
 var menuHandler = function() {
 	var sliderTarget = $("#left-menu");
-	if(sliderTarget.data("clickState") != 1) {
-		sliderTarget.data("clickState", 1).
-			removeClass('collapse').
+	if(canSwipeLeft) {
+		sliderTarget.removeClass('collapse').
 			addClass("custom-slider").find('ul');
 		$(this).parent().parent().parent().animate({
 			left: "+=" + sliderTarget.css("width")
 		}, 150, "linear");
+
+		// disable swipe left
+		canSwipeLeft = false;
 	} else {
 		$(this).parent().parent().parent().animate({
 			left: "-=" + sliderTarget.css("width")
 		}, 150, "linear", function() {
-			sliderTarget.data("clickState", 0).
-				addClass('collapse').
+			sliderTarget.addClass('collapse').
 				removeClass("custom-slider");
+
+			// enable swipe left
+			canSwipeLeft = true;
 		});
 	};
 }
@@ -21,24 +33,37 @@ var menuHandler = function() {
 $("#home-slider").click(menuHandler)
 
 
-
-var wrapper = document.getElementById("wrapper");
-
-
-wrapper.addEventListener('touchend', function() {
-        document.getElementById("test").innerHTML = "<p>Ended</p>";
-	//ctx.clearRect(0, 0, w, h);
+content.addEventListener('touchend', function(event) {
+	var sliderTarget = $("#left-menu");
+	if(parseInt($("#wrapper").css("left")) < parseInt(sliderTarget.css("width"))/2) {
+		$("#wrapper").css("left", 'auto');
+		canSwipeLeft = true;
+	} else {
+		$("#wrapper").css("left", sliderTarget.css("width"));
+		canSwipeLeft = false;
+	}
 });
 
-wrapper.addEventListener('touchmove', function(event) {
-  event.preventDefault();
-   document.getElementById("test").innerHTML = "<p>Moving</p>";
+content.addEventListener('touchmove', function(event) {
+		event.preventDefault();
+		var sliderTarget = $("#left-menu");
+
+		distance = event.touches[0].pageX - coorXStart;
+		if(canSwipeLeft && (distance > 0)) {
+			$("#test").html(distance);
+			sliderTarget.removeClass('collapse').
+				addClass("custom-slider")
+			$("#wrapper").css("left", distance + "px");
+		} else if(!canSwipeLeft && (distance < 0)) {
+			$("#test").html($wrapper.css("left"));
+			$("#wrapper").css("left", wrapperY + distance + "px");
+		}
 });
 
-wrapper.addEventListener('touchstart', function(event) {
-
-document.getElementById("test").innerHTML = "<p>Starting</p>";
+content.addEventListener('touchstart', function(event) {
+		// initialize X coordinate
+		coorXStart = event.touches[0].pageX;
+		wrapperY = parseInt($("#wrapper").css('left'));
 
 });
-
 
