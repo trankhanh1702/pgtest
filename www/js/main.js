@@ -6,22 +6,23 @@ var wrapper = document.getElementById("wrapper"),
 	canSwipeLeft = true,
 	wrapperY;
 	content = document.getElementById("content");
-var menuHandler = function() {
-	// var sliderTarget = $("#left-menu");
-	sliderTarget = document.getElementById("#")
+var menuHandler = function(event) {
+	event.preventDefault();
+	var sliderTarget = $("#left-menu");
+	// sliderTarget = document.getElementById("#left-menu")
 	if(canSwipeLeft) {
 		sliderTarget.removeClass('collapse').
 			addClass("custom-slider").find('ul');
 		$(this).parent().parent().parent().animate({
 			left: "+=" + sliderTarget.css("width")
-		}, 150, "linear");
+		}, 300, "linear");
 
 		// disable swipe left
 		canSwipeLeft = false;
 	} else {
 		$(this).parent().parent().parent().animate({
 			left: "-=" + sliderTarget.css("width")
-		}, 150, "linear", function() {
+		}, 300, "linear", function() {
 			sliderTarget.addClass('collapse').
 				removeClass("custom-slider");
 
@@ -31,7 +32,7 @@ var menuHandler = function() {
 	};
 }
 
-document.getElementById("home-slider").addEventListener('touchstart', menuHandler);
+document.getElementById("home-slider").addEventListener('touchend', menuHandler, false);
 
 
 content.addEventListener('touchend', function(event) {
@@ -47,14 +48,17 @@ content.addEventListener('touchend', function(event) {
 
 content.addEventListener('touchmove', function(event) {
 		event.preventDefault();
-		var sliderTarget = $("#left-menu");
+		var finetuneMove = window.setInterval(function() {
+			
+		}, 50);
+		var sliderTarget = document.getElementById("left-menu");
 
 		distance = event.touches[0].pageX - coorXStart;
 		if(canSwipeLeft && (distance > 0)) {
-			$("#test").html(distance);
-			sliderTarget.removeClass('collapse').
-				addClass("custom-slider")
-			$("#wrapper").css("left", distance + "px");
+			// $("#test").html(distance);
+			document.getElementById("test").innerHTML = distance;
+			sliderTarget.className = 'navbar-collapse custom-slider';
+			document.getElementById("wrapper").style.left = distance + "px";
 		} else if(!canSwipeLeft && (distance < 0)) {
 			$("#test").html($wrapper.css("left"));
 			$("#wrapper").css("left", wrapperY + distance + "px");
